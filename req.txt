@@ -1,7 +1,13 @@
+async-lru==1.0.2
 certifi==2021.5.30
 cffi==1.14.6
 charset-normalizer==2.0.4
 idna==3.2
+pyaes==1.6.1
+pycparser==2.20
+Pyrogram==1.2.9
+PySocks==1.7.1
 pyTelegramBotAPI==3.8.3
 requests==2.26.0
+TgCrypto==1.2.2
 urllib3==1.26.6

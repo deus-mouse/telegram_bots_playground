@@ -1,18 +1,20 @@
 # - *- coding: utf- 8 - *-
 
+
+
 import telebot
 import config
 
-me = 279478014
-lena = 457526700
 
 
 text = config.text
-bot = telebot.TeleBot(config.bot_token)
+bot = telebot.TeleBot(config.ed_bot_token)
 
 @bot.message_handler(content_types=["text"])
 def text_handler(message):
-    if message.text == "Дай id этой группы":
+
+    # дергает id группы
+    if message.text == "id":
         # print("отправляем")
         # bot.send_message(me, text)
         # print("отправили")

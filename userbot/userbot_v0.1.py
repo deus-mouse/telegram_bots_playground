@@ -3,19 +3,7 @@ from time import sleep
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 
-from bot.config import text as big_message
-
-big_family_id = -282972466
-
-me = 279478014
-lena = 457526700
-denis = 565712281
-
-lanvin1392 = 430813324
-p_chekhov = 100789680
-MiraTyT = 500875961
-
-
+from data import *
 
 app = Client("my_account")
 
@@ -58,14 +46,32 @@ app = Client("my_account")
 #     # Send a sticker
 #     # app.send_sticker("me", "CAADBAADzg4AAvLQYAEz_x2EOgdRwBYE")
 
-target = big_family_id  # Target channel/supergroup
 
+# Get all the members of a chat.
+target = infra_chat_id  # Target channel/supergroup
 with app:
-    for member in app.iter_chat_members(target):
-        print(member.user.first_name)
-        print(member.user.username)
-        print(member.user.id)
 
+    # присылает список имен, ников и id из чата
+    # for member in app.iter_chat_members(target):
+    #     app.send_message(chat_id=infra_chat_id, text=str(member.user.first_name))
+    #     print(member.user.first_name, type(member.user.first_name))
+    #     # app.send_message(me, text=str(member.user.first_name))
+    #     app.send_message(chat_id=infra_chat_id, text=str(member.user.username))
+    #     print(member.user.username, type(member.user.username))
+    #     # app.send_message(me, text=str(member.user.username))
+    #     app.send_message(chat_id=infra_chat_id, text=str(member.user.id))
+    #     print(member.user.id, type(member.user.id))
+    #     # app.send_message(me, text=str(member.user.id))
+    #     app.send_message(chat_id=infra_chat_id, text="xxxxxxxxxxxxxxxx")
+    #     print("xxxxxxxxxxxxxxxx")
+    #     # app.send_message(me, text="xxxxxxxxxxxxxxxx")
+
+    # добавляет в контакты
+    for user in another_contacts:
+        for username, id in user.items():
+            print(username, id)
+            app.add_contact(id, username)
+            # app.send_message(chat_id=id, text=message_to_send)
 
 app.run()
 
