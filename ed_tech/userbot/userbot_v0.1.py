@@ -3,7 +3,7 @@ from time import sleep
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 
-from data import *
+from ed_tech.data import *
 
 app = Client("my_account")
 
