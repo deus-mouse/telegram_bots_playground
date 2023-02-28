@@ -28,14 +28,61 @@ ikb.add(ib1)
 text_storage = SimpleNamespace(
     help='<b>/start</b> - <em>начать работу с ботом</em>\n'
          '<b>/help</b> - <em>список команд</em>\n'
-         '<b>/link</b> - <em>ссылки</em>\n'
+         '<b>/start_servey</b> - <em>начать опрос</em>\n'
     ,
-    start='Привет ! Я инвайт-бот ретро лан, вам необходимо ответить на вопросы общего характера, чтобы мы смогли '
-          'немного лучше узнать Вас. Рассмотрение вашей кандидатуры займёт несколько дней, после чего вас пригласят в '
-          'чат сбора в гараж.',
+    start='Привет я гаражный пук, хочешь попасть к нам и попердеть вместе с нами? '
+          'Ответь на несколько вопросов, мне же надо познакомится поближе.',
 )
 
 for button in text_storage.__dict__.keys():
     if button in ['start']:
         continue
     kb.add(KeyboardButton(f'/{button}'))
+
+
+id_storage = dict(говорящий_гараж=-812977869, me=279478014)
+
+
+class Survey:
+    def __init__(self):
+        self.switch = False
+        self.counter = 0
+        self.questions = [
+            'Ссылка на акк в телеграме',
+            'Звать то тебя как?',
+            'Сколько годков тебе?',
+            'Так мы тебя и запишем, а мог бы себя и попиздаче записать.'
+            'Ты же понимаешь что от всех этих ответов зависит попадешь ты к нам или нет?',
+            'Как там с деньгами вопрос обстоит?',
+            'Хм... а ты вообще откуда? Есть соцсети?',
+            'А чем вообще увлекаешься?',
+            'И откуда ты услышал обо мне?',
+            'Женат? или вилкой в глаз?',
+            'А гамать во что любишь?',
+        ]
+        self.answers = []
+        self.dump = None
+
+    def next_question(self):
+        try:
+            question = self.questions[self.counter]
+            self.counter += 1
+            return question
+        except IndexError:
+            return False
+
+    def update_answers(self, answer):
+        self.answers.append(answer)
+        print(f'{self.answers=}')
+
+    def send(self):
+        qna = []
+        for i in range(len(self.questions)):
+            text = ':\n'.join([f'<em>{self.questions[i]}</em>', self.answers[i]])
+            print(f'{text=}')
+            qna.append(text)
+        self.dump = '\n\n'.join(qna)
+        return self.dump
+
+
+survey = Survey()
