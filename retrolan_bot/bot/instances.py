@@ -73,13 +73,11 @@ class Survey:
 
     def update_answers(self, answer):
         self.answers.append(answer)
-        print(f'{self.answers=}')
 
     def send(self):
         qna = []
         for i in range(len(self.questions)):
             text = ':\n'.join([f'<em>{self.questions[i]}</em>', self.answers[i]])
-            print(f'{text=}')
             qna.append(text)
         self.dump = '\n\n'.join(qna)
         return self.dump
