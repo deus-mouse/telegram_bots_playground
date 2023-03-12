@@ -20,7 +20,7 @@ async def survey_flow(message):
                 button_url = message.from_user.url
                 markup = types.InlineKeyboardMarkup()
                 markup.add(types.InlineKeyboardButton(text=message.from_user.username, url=button_url))
-                await bot.send_message(id_storage['me'], text=survey.send(), parse_mode='HTML',
+                await bot.send_message(id_storage['говорящий_гараж'], text=survey.send(), parse_mode='HTML',
                                        reply_markup=markup)
                 await message.answer('Я подумаю, посовещаюсь с гаражниками, и дам свой ответ 🤖')
                 surveys_complete_holder.add(message.from_user.id)
