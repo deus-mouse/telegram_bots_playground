@@ -32,6 +32,7 @@ text_storage = SimpleNamespace(
     ,
     start='Привет я гаражный пук, хочешь попасть к нам и попердеть вместе с нами? '
           'Ответь на несколько вопросов, мне же надо познакомится поближе.',
+    block='Вы уже прошли опрос.'
 )
 
 for button in text_storage.__dict__.keys():
@@ -42,9 +43,12 @@ for button in text_storage.__dict__.keys():
 
 id_storage = dict(говорящий_гараж=-812977869, me=279478014)
 
+surveys_holder = list()
+surveys_complete_holder = set()
 
 class Survey:
-    def __init__(self):
+    def __init__(self, id):
+        self.id = id
         self.switch = False
         self.counter = 0
         self.questions = [
@@ -55,10 +59,10 @@ class Survey:
             'Ты же понимаешь что от всех этих ответов зависит попадешь ты к нам или нет?',
             'Как там с деньгами вопрос обстоит?',
             'Хм... а ты вообще откуда? Есть соцсети?',
-            'А чем вообще увлекаешься?',
-            'И откуда ты услышал обо мне?',
-            'Женат? или вилкой в глаз?',
-            'А гамать во что любишь?',
+            # 'А чем вообще увлекаешься?',
+            # 'И откуда ты услышал обо мне?',
+            # 'Женат? или вилкой в глаз?',
+            # 'А гамать во что любишь?',
         ]
         self.answers = []
         self.dump = None
@@ -83,4 +87,3 @@ class Survey:
         return self.dump
 
 
-survey = Survey()
