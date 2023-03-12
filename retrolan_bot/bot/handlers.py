@@ -32,6 +32,12 @@ async def links_command(message: types.Message):
 
 @dp.message_handler(content_types=['text'])
 async def send_sticker_id(message: types.Message):
+    '''
+    message.from_user.url = tg://user?id=457526700
+    message.chat.id = 457526700
+    :param message:
+    :return:
+    '''
     if survey.switch:
         survey.update_answers(message.text)
         question = survey.next_question()
@@ -39,7 +45,12 @@ async def send_sticker_id(message: types.Message):
             await message.answer(question)
         else:
             survey.switch = False
-            await bot.send_message(chat_id=id_storage['говорящий_гараж'], text=survey.send(), parse_mode='HTML')
+
+            button_url = message.from_user.url
+            markup = types.InlineKeyboardMarkup()
+            markup.add(types.InlineKeyboardButton(text=message.from_user.username, url=button_url))
+            await bot.send_message(id_storage['говорящий_гараж'], text=survey.send(), parse_mode='HTML',
+                                   reply_markup=markup)
             await message.answer('Я подумаю, посовещаюсь с гаражниками, и дам свой ответ 🤖')
 
 
