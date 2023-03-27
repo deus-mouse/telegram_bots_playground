@@ -14,6 +14,8 @@ async def survey_flow(message):
             survey.update_answers(message.text)
             question = survey.next_question()
             if question:
+                logging.debug(f'{message.from_user.id}: {question}')
+                print(f'{message.from_user.id}: {question}')
                 await message.answer(question)
             else:
                 # survey.switch = False

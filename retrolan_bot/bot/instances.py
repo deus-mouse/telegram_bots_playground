@@ -10,6 +10,10 @@ API_TOKEN = ed_bot_token
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.DEBUG,
+    handlers=[logging.FileHandler('app.log', 'w', 'utf-8')],
+)
 
 # Initialize bot and dispatcher
 bot = Bot(token=API_TOKEN)
@@ -45,6 +49,7 @@ id_storage = dict(говорящий_гараж=-812977869, me=279478014)
 
 surveys_holder = list()
 surveys_complete_holder = set()
+
 
 class Survey:
     def __init__(self, id):
